@@ -1,4 +1,8 @@
-$primary-color: red;
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+$primary-color: rgb(11, 0, 107);
+$secondary-color: rgb(253, 253, 255);
+$primary-font-size: 20px;
 
 body, html {
     margin: 0;
@@ -7,11 +11,134 @@ body, html {
   
   * {
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-size: $primary-font-size;
   }
-  
-  .container {
-    width: 100%;
+
+  body, html, .container, .mainBody {
     height: 100%;
-    color: $primary-color;
+    width: 100%;
   }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('./images/blueSky.jpg') no-repeat;
+    background-position: center;
+    height: 300px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+
+  }
+
+  .header > label { //the title
+    font-size: 60px;
+    text-align: center;
+  }
+
+  .logo {
+    background: url(./images/logo.png) no-repeat;
+    background-size: contain;
+    width: 100px;
+    height: 100px;
+  }
+
+  .mainBody {
+    background: linear-gradient(rgb(135, 135, 229), rgb(255,255,255, 1));
+    background-color: $secondary-color;
+    padding: 10px;
+    display: inline-grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-rows: 1fr 1fr 1fr;
+    resize: both;
+  }
+
+  .mainBody > * {
+    margin: 10px;
+  }
+
+  .searchBarContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: end;
+  }
+
+  .searchBarContainer > button {
+    width: 100px;
+  }
+
+  .searchBarContainer > input {
+    width: 300px;
+  }
+
+  .dataContainer {
+    min-width: 500px;
+    background-color: white;
+    border-radius: 7px;
+    padding: 20px;
+  }
+
+  .dataContainer > label {
+    text-align: right;
+  }
+
+  .footer {
+    background-color: $primary-color;
+    height: 200px;
+  }
+
+  #current {
+    display: inline-grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  #temp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
+    background-color: rgb(35, 35, 35);
+    color: rgb(246, 246, 246);
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+
+  #astro {
+    display: inline-grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    color: white;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./images/moon.jpg') no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  #astro :first-child {
+    font-size: 30px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    text-align: center;
+    padding: 5px;
+  }
+
   

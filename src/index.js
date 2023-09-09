@@ -1,7 +1,13 @@
 import _ from 'lodash';
 import '../src/styles/main.scss'
-import addContainer from './addContainer';
-import loadData from './loadData';
+import addBaseElements from './addBaseElements';
+import createDataElements from './createDataElements';
+import formatHeader from './formatHeader';
+import createAstroElements from './createAstroElements';
+import loadCurrentLocation from './loadCurrentLocation';
 
-addContainer();
-loadData();
+addBaseElements();
+formatHeader();
+createDataElements();
+createAstroElements();
+loadCurrentLocation();
