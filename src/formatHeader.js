@@ -1,3 +1,4 @@
+import createLoadingIcon from "./createLoadingIcon";
 import getAndLoadData from "./getAndLoadData";
 
 function formatHeader () {
@@ -23,6 +24,8 @@ function formatHeader () {
     header.appendChild(searchBarContainer);
     searchBarContainer.appendChild(searchBar);
     searchBarContainer.appendChild(searchBtn);
+
+    createLoadingIcon();
 
     searchBtn.addEventListener('click', () => {
         getAndLoadData(searchBar.value);

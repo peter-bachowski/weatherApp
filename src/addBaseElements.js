@@ -13,6 +13,8 @@ function addBaseElements () {
     container.appendChild(header);
     container.appendChild(mainBody);
     container.appendChild(footer); 
+
+    footer.textContent = 'Copyright © Peter Bachowski 2023'
 }
 
 export default addBaseElements;

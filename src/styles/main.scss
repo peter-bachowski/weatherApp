@@ -1,144 +1,228 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-$primary-color: rgb(11, 0, 107);
+$primary-color: rgb(14, 7, 79);
 $secondary-color: rgb(253, 253, 255);
 $primary-font-size: 20px;
 
 body, html {
+    min-width: 450px;
     margin: 0;
     padding: 0;
   }
   
-  * {
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-    font-size: $primary-font-size;
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-size: $primary-font-size;
+}
+
+body, html, .container, .mainBody {
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('./images/blueSky.jpg') no-repeat;
+  background-position: center;
+  padding: 20px;
+  display: inline-grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  align-items: center;
+  color: white;
+
+}
+
+.header > label { //the title
+  font-size: 60px;
+  text-align: center;
+}
+
+.logo {
+  background: url(./images/logo.png) no-repeat;
+  background-size: contain;
+  width: 100px;
+  height: 100px;
+}
+
+.mainBody {
+  background: linear-gradient(rgb(135, 135, 229), rgb(255,255,255, 1));
+  background-color: $secondary-color;
+  padding: 10px;
+  display: inline-grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-rows: 1fr 1fr 1fr;
+  resize: both;
+}
+
+.mainBody > * {
+  margin: 10px;
+}
+
+.searchBarContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: end;
+}
+
+.searchBarContainer > button {
+  width: 100px;
+}
+
+.searchBarContainer > input {
+  width: 300px;
+}
+
+.dataContainer {
+  background-color: white;
+  border-radius: 7px;
+  padding: 20px;
+}
+
+.dataContainer > label {
+  text-align: right;
+}
+
+.footer {
+  background-color: $primary-color;
+  height: 200px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#current {
+  background: url('./images/sun.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: inline-grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  color: white;
+}
+
+#current > * {
+  font-size: 25px;
+}
+
+#temp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(35, 35, 35);
+  color: rgb(246, 246, 246);
+  position: relative;
+}
+
+.tempDiv {
+  font-size: 80px;
+}
+
+#astro {
+  display: inline-grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  color: white;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./images/moon.jpg') no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+#astro :first-child {
+  font-size: 30px;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  text-align: center;
+  padding: 5px;
+}
+
+#loading {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 6px solid #9c41f2;
+  border-radius: 100%;
+  margin: auto;
+  visibility: hidden;
+  animation: spin 1s infinite linear;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+}
+
+#loading.display {
+  visibility: visible;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
   }
-
-  body, html, .container, .mainBody {
-    height: 100%;
-    width: 100%;
+  to {
+    transform: rotate(360deg);
   }
+}  
 
-  .container {
-    display: flex;
-    flex-direction: column;
-  }
+.toggleContainer {
+  display: flex;
+  position: absolute;
+  bottom: 20px;
+  align-items: center;
+}
+.toggleContainer > * {
+  margin: 5px;
+}
 
-  .header {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('./images/blueSky.jpg') no-repeat;
-    background-position: center;
-    height: 300px;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
 
-  }
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
 
-  .header > label { //the title
-    font-size: 60px;
-    text-align: center;
-  }
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
 
-  .logo {
-    background: url(./images/logo.png) no-repeat;
-    background-size: contain;
-    width: 100px;
-    height: 100px;
-  }
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: rgb(58, 58, 171);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
 
-  .mainBody {
-    background: linear-gradient(rgb(135, 135, 229), rgb(255,255,255, 1));
-    background-color: $secondary-color;
-    padding: 10px;
-    display: inline-grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    grid-template-rows: 1fr 1fr 1fr;
-    resize: both;
-  }
-
-  .mainBody > * {
-    margin: 10px;
-  }
-
-  .searchBarContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    align-items: end;
-  }
-
-  .searchBarContainer > button {
-    width: 100px;
-  }
-
-  .searchBarContainer > input {
-    width: 300px;
-  }
-
-  .dataContainer {
-    min-width: 500px;
-    background-color: white;
-    border-radius: 7px;
-    padding: 20px;
-  }
-
-  .dataContainer > label {
-    text-align: right;
-  }
-
-  .footer {
-    background-color: $primary-color;
-    height: 200px;
-  }
-
-  #current {
-    display: inline-grid;
-    grid-template-columns: auto 1fr;
-    gap: 20px;
-    grid-column-start: 3;
-    grid-column-end: 4;
-    grid-row-start: 1;
-    grid-row-end: 2;
-  }
-
-  #temp {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 80px;
-    background-color: rgb(35, 35, 35);
-    color: rgb(246, 246, 246);
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 2;
-  }
-
-
-  #astro {
-    display: inline-grid;
-    grid-template-columns: auto 1fr;
-    gap: 20px;
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 2;
-    color: white;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./images/moon.jpg') no-repeat;
-    background-position: center;
-    background-size: cover;
-  }
-
-  #astro :first-child {
-    font-size: 30px;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    text-align: center;
-    padding: 5px;
-  }
-
-  
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
